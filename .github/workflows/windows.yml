@@ -23,8 +23,8 @@ jobs:
             grep GITHUB_ |
             perl -pe 's/^/export /' > "$github"
           echo 'env' >> "$github"
-          echo 'echo "GITHUB_ACTOR: $GITHUB_ACTOR"' >> "$github"
-          echo "sh -x -c 'echo GITHUB_ACTOR: \$GITHUB_ACTOR'" >> "$github"
+          echo 'echo "GITHUB_ACTOR_ID: $GITHUB_ACTOR_ID"' >> "$github"
+          echo "sh -x -c 'echo GITHUB_ACTOR_ID: \$GITHUB_ACTOR_ID'" >> "$github"
           echo 'cygpath -w $(command -v env)' >> "$github"
           command -v env
           cygpath -w $(command -v env)
