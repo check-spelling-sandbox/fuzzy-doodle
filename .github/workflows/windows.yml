@@ -24,7 +24,8 @@ jobs:
             perl -pe 's/^/export /' > "$github"
           cat "$github"
           github2=$(cygpath -w "$github" | perl -pe 's#\\#\\\\\\\\#g')
-          MSYS_NO_PATHCONV=1 /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c "set -x ; . $github2; env"
+          echo 'env' >> "$github2"
+          MSYS_NO_PATHCONV=1 /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c "set -x ; . $github2"
 
       - name: env (bash)
         shell: bash
