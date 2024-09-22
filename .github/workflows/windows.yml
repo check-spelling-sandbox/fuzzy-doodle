@@ -21,8 +21,9 @@ jobs:
           env |
             grep GITHUB_ |
             perl -pe 's/^/export /' > "$github"
-            cat "$github"
-          /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c ". $github; env"
+          cat "$github"
+          github2=$(cygpath -w "$github")
+          /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c ". $github2; env"
 
       - name: env (bash)
         shell: bash
