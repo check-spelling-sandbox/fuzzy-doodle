@@ -20,7 +20,8 @@ jobs:
           github=$(mktemp)
           env |
             grep GITHUB_ |
-            perl -pe 's/^/export /' > $github
+            perl -pe 's/^/export /' > "$github"
+            cat "$github"
           /c/msys64/usr/bin/bash --noprofile --rcfile "$github" -eo pipefail -c 'env'
 
       - name: env (bash)
