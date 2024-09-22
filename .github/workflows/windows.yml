@@ -9,6 +9,7 @@ jobs:
     runs-on: windows-latest
 
     steps:
+      - uses: actions/checkout@v4
       - name: env
         shell: bash
         run: |
@@ -18,19 +19,10 @@ jobs:
         shell: bash
         run: |
           set -x
-          github=$(mktemp)
           env |
             grep GITHUB_ |
-            perl -pe 's/^/export /' > "$github"
-          echo 'env' >> "$github"
-          echo 'echo "GITHUB_ACTOR_ID: $GITHUB_ACTOR_ID"' >> "$github"
-          echo "sh -x -c 'echo GITHUB_ACTOR_ID: \$GITHUB_ACTOR_ID'" >> "$github"
-          echo 'cygpath -w $(command -v env)' >> "$github"
-          command -v env
-          cygpath -w $(command -v env)
-          cat "$github"
-          github2=$(cygpath -w "$github" | perl -pe 's#\\#\\\\\\\\#g')
-          MSYS_NO_PATHCONV=1 /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c "set -x ; . $github2"
+            perl -pe 's/^/export /' > "input-env"
+          /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail ./test.sh
 
       - name: env (bash)
         shell: bash
