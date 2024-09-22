@@ -23,7 +23,10 @@ jobs:
             grep GITHUB_ |
             perl -pe 's/^/export /' > "$github"
           echo 'env' >> "$github"
-          echo 'echo "GITHUB_ACTOR: \$GITHUB_ACTOR"' >> "$github"
+          echo 'echo "GITHUB_ACTOR: $GITHUB_ACTOR"' >> "$github"
+          echo 'cygpath -w $(command -v env)' >> "$github"
+          command -v env
+          cygpath -w $(command -v env)
           cat "$github"
           github2=$(cygpath -w "$github" | perl -pe 's#\\#\\\\\\\\#g')
           MSYS_NO_PATHCONV=1 /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c "set -x ; . $github2"
