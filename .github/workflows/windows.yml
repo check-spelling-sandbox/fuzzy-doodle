@@ -22,7 +22,7 @@ jobs:
             grep GITHUB_ |
             perl -pe 's/^/export /' > "$github"
           cat "$github"
-          github2=$(cygpath -w "$github")
+          github2=$(cygpath -w "$github" | perl -pe 's#\\#\\\\#g')
           /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c ". $github2; env"
 
       - name: env (bash)
