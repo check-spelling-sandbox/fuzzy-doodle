@@ -13,3 +13,9 @@ jobs:
         shell: bash
         run: |
           env
+
+      - name: Run a multi-line script
+        shell: bash
+        run: |
+          PATH="/c/msys64/mingw64/bin:/c/msys64/usr/local/bin:/c/msys64/usr/bin:$PATH"
+          /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c 'env'
