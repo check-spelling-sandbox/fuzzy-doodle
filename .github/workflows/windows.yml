@@ -17,13 +17,14 @@ jobs:
       - name: env (github)
         shell: bash
         run: |
+          set -x
           github=$(mktemp)
           env |
             grep GITHUB_ |
             perl -pe 's/^/export /' > "$github"
           cat "$github"
           github2=$(cygpath -w "$github" | perl -pe 's#\\#\\\\#g')
-          /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c ". $github2; env"
+          MSYS_NO_PATHCONV=1 /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c ". $github2; env"
 
       - name: env (bash)
         shell: bash
