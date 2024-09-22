@@ -9,18 +9,23 @@ jobs:
     runs-on: windows-latest
 
     steps:
-      - name: Run a multi-line script
+      - name: env
         shell: bash
         run: |
           env
 
-      - name: Run a multi-line script
+      - name: env (bash)
+        shell: bash
+        run: |
+          /c/msys64/usr/bin/bash -eo pipefail -c 'env'
+
+      - name: env (norc)
         shell: bash
         run: |
           PATH="/c/msys64/mingw64/bin:/c/msys64/usr/local/bin:/c/msys64/usr/bin:$PATH"
           /c/msys64/usr/bin/bash --norc -eo pipefail -c 'env'
 
-      - name: Run a multi-line script
+      - name: env (noprofile, norc)
         shell: bash
         run: |
           PATH="/c/msys64/mingw64/bin:/c/msys64/usr/local/bin:/c/msys64/usr/bin:$PATH"
