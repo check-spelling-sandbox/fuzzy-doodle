@@ -14,6 +14,13 @@ jobs:
         run: |
           env
 
+      - name: env (github)
+        shell: bash
+        run: |
+          github=$(mktemp)
+          env | grep GITHUB_ perl -pe 's/^/export //' > $github
+          /c/msys64/usr/bin/bash --noprofile --rcfile $github" -eo pipefail -c 'env'
+
       - name: env (bash)
         shell: bash
         run: |
