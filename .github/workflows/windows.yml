@@ -24,6 +24,7 @@ jobs:
             perl -pe 's/^/export /' > "$github"
           cat "$github"
           github2=$(cygpath -w "$github" | perl -pe 's#\\#\\\\\\\\#g')
+          echo 'echo "$GITHUB_ACTOR"' >> "$github2"
           echo 'env' >> "$github2"
           MSYS_NO_PATHCONV=1 /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail -c "set -x ; . $github2"
 
