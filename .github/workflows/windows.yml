@@ -21,7 +21,7 @@ jobs:
           env |
             grep GITHUB_ |
             perl -pe 's/^/export /' > $github
-          /c/msys64/usr/bin/bash --noprofile --rcfile $github" -eo pipefail -c 'env'
+          /c/msys64/usr/bin/bash --noprofile --rcfile "$github" -eo pipefail -c 'env'
 
       - name: env (bash)
         shell: bash
