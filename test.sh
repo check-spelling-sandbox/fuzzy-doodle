@@ -1,4 +1,5 @@
 #!/bin/bash -x
+set -x
 cat ./input-env
 . ./input-env
 echo "GITHUB_ACTOR_ID: $GITHUB_ACTOR_ID"
