@@ -23,6 +23,8 @@ jobs:
             grep GITHUB_ |
             perl -pe 's/^/export /' > "input-env"
           /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail ./test.sh
+          ./test.sh
+          ./test.pl
 
       - name: env (bash)
         shell: bash
