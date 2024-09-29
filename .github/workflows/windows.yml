@@ -25,6 +25,7 @@ jobs:
           /c/msys64/usr/bin/bash --noprofile --norc -eo pipefail ./test.sh
           ./test.sh
           ./test.pl
+          ./sub-test.pl
 
       - name: env (bash)
         shell: bash
