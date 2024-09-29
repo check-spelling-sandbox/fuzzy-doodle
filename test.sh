@@ -8,4 +8,4 @@ export TEST=case
 echo "TEST=$TEST"
 command -v env
 env
-perl -e 'print join "\n", map { "$_=$ENV{$_}" } keys %ENV;'
+MAYBE=something perl -e 'print join "\n", map { "$_=$ENV{$_}" } keys %ENV;'
