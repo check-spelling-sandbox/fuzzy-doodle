@@ -13,6 +13,10 @@ jobs:
       - name: env
         shell: bash
         run: |
+          set -x
+          cygpath -w $(command -v mount)
+          mount
+          cygpath -w $(command -v env)
           env
 
       - name: env (github)
