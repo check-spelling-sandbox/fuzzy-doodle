@@ -18,6 +18,7 @@ jobs:
           mount
           cygpath -w $(command -v env)
           env
+          cygpath -w $(command -v bash)
 
       - name: env (github)
         shell: bash
